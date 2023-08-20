@@ -8,22 +8,34 @@ import figlet from 'figlet';
 // import { createSpinner } from 'nanospinner';
 
 async function Welcome() {
-    const Hour = new Date().getHours();
-    let time;
+  const Hour = new Date().getHours();
+  let time, line;
 
-    if (Hour >= 5 && Hour < 12) {
-        time = "Morning"
-      } else if (Hour >= 12 && Hour < 18) {
-        time = "Afternoon"
-      } else {
-        time = "Night"
-      }
-    
-    const welcomeMessage = `Good ${time} !`
+  if (Hour >= 5 && Hour < 12) {
+    time = "Morning";
+    line = "=======================================================================";
+  } else if (Hour >= 12 && Hour < 18) {
+    time = "Afternoon";
+    line = "==================================================================================";
+  } else {
+    time = "Morning";
+    line = "=========================================================";
+  }
 
-    figlet(welcomeMessage, (err, data) => {
-        console.log(gradient.pastel.multiline(data))
-    });
+  async function Line() {
+    console.log(gradient.pastel.multiline(line))
+  }
+
+  const welcomeMessage = `Good ${time} !`
+
+  figlet(welcomeMessage, (err, data) => {
+    Line();
+    console.log(gradient.pastel.multiline(
+      `
+          \n${data}
+          `));
+    Line();
+  });
 }
 
-await Welcome()
+await Welcome();

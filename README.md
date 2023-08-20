@@ -3,7 +3,7 @@ My first npm package.
 # Installation
 
 ```
-npm i jiale-cli
+npm i jiale0709
 ```
 
 # License
